@@ -1,5 +1,5 @@
-TypeScript App Build Demo
-=========================
+TypeScript App Build POC
+========================
 Using Grunt to compile TypeScript to ECMA5.  Proof of Concept by Nick Kaye.
 
 I have become fascinated over the past month with TypeScript, which is Microsoft's open source implementation of ECMA6 (a.k.a. JavaScript 6), the long-term strong-typed successor to our current darling, JavaScript 5.
