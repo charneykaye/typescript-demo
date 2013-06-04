@@ -21,6 +21,9 @@ While you're working, you can use the preconfigured watch plugin to automaticall
 ## TODOS Demo App
 
 Code borrowed from http://www.typescriptlang.org/Samples/#TodoMVC
+
 Created by Jérôme Gravel-Niquet.
+
 Cleanup, edits: Addy Osmani.
+
 TypeScript version by Luke Hoban.
