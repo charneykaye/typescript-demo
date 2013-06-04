@@ -21,7 +21,7 @@ module.exports = function(grunt) {
 		},
 		uglify: {
 			options: {
-				banner: '/*! typescript-demo <%= pkg.version %> (<%= grunt.template.today("yyyy-mm-dd") %>) | Outright Mental Inc. - https://github.com/outrightmental/typescript-demo.git \n'
+				banner: '/* typescript-demo <%= pkg.version %> (<%= grunt.template.today("yyyy-mm-dd") %>) | Outright Mental Inc. - https://github.com/outrightmental/typescript-demo.git */\n'
 			},
 			all: {
 				files: [
