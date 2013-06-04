@@ -1,6 +1,10 @@
 TypeScript App Build Demo
 =========================
-Using Grunt to compile TypeScript to ECMA5.  Proof of Concept by Nick Kaye
+Using Grunt to compile TypeScript to ECMA5.  Proof of Concept by Nick Kaye.
+
+I have become fascinated over the past month with TypeScript, which is Microsoft's open source implementation of ECMA6 (a.k.a. JavaScript 6), the long-term strong-typed successor to our current darling, JavaScript 5.
+
+Towards a sustainable process for truly "building" front-end applications, I have setup a very simple Backbone.js application implementing Grunt in order to keep all of the source files (JavaScript 6, css, images, html) inside of a '/src/' folder, and build to a '/build/' folder in a single command line, including compiling JavaScript 6 to 5, minifying and uglifying.
 
 ## Documentation
 
