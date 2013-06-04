@@ -1,27 +1,20 @@
 module.exports = function(grunt) {
 	//Configuration.
 	grunt.initConfig({
-		pkg: grunt.file.readJSON('package.json') ,
-		jshint: {
-			options: {
-				smarttabs: false,
-				immed: true,
-				latedef: true,
-				noarg: true,
-				quotmark: 'single',
-				unused: true,
-				strict: true,
-				trailing: true,
-				globals: {
-					jQuery: true,
-					window: true,
-					document: true,
-					navigator: true
+		pkg: grunt.file.readJSON('package.json'),
+		typescript: {
+			base: {
+				src: ['src/ts/**/*.ts'],
+				dest: 'src/_js/',
+				options: {
+					module: 'amd', //or commonjs
+					target: 'es5', //or es3
+					base_path: 'src/ts',
+					sourcemap: true,
+					fullSourceMapPath: true,
+					declaration: true
 				}
-			},
-			all: [
-				'src/js/*.js',
-				]
+			}
 		},
 		qunit: {
 			all: ['test/index.html']
@@ -32,7 +25,7 @@ module.exports = function(grunt) {
 			},
 			all: {
 				files: [
-					{expand: true, cwd: 'src/js/', src: ['*.js'], dest: 'build/js/'},
+					{expand: true, cwd: 'src/_js/', src: ['**/*.js'], dest: 'build/js/', ext:'.min.js'}
 				]
 			}
 		},
@@ -44,56 +37,54 @@ module.exports = function(grunt) {
 				},
 				files: [
 					// Index HTML
-					{src: ['src/index.html'], dest: 'build/index.html', filter: 'isFile'}
+                    {expand: true, cwd: 'src/', src: ['*.html'], dest: 'build/'}
 				]
 			}
 		},
 		copy: {
 			all: {
 				files: [
-					// Copy JavaScript libraries
-					{expand: true, cwd: 'src/js/lib/', src: ['*.js'], dest: 'build/js/lib/'},
 					// Copy CSS files
 					{expand: true, cwd: 'src/css/', src: ['*.css'], dest: 'build/css/'},
 					// Copy Images
-					{expand: true, cwd: 'src/img/', src: ['**'], dest: 'build/img/'},
+					{expand: true, cwd: 'src/img/', src: ['**'], dest: 'build/img/'}
 				]
 			}
 		},
 		watch: {
-			javascript: {
-				files: ['src/js/*.js'],
-				tasks: ['jshint','qunit','uglify'],
+			typescript: {
+				files: ['src/ts/**/*.ts'],
+				tasks: ['typescript','qunit','uglify'],
 				options: {
-					nospawn: true,
-				},
+					nospawn: true
+				}
 			},
 			html: {
 				files: ['src/*.html'],
 				tasks: ['htmlmin'],
 				options: {
-					nospawn: true,
-				},
+					nospawn: true
+				}
 			},
 			css: {
 				files: ['src/css/*.css'],
 				tasks: ['copy'],
 				options: {
-					nospawn: true,
-				},
+					nospawn: true
+				}
 			}
-		},		
+		}
 	});
 
 	//Dependencies.
-	grunt.loadNpmTasks('grunt-contrib-jshint');
 	grunt.loadNpmTasks('grunt-contrib-qunit');
 	grunt.loadNpmTasks('grunt-contrib-uglify');
 	grunt.loadNpmTasks('grunt-contrib-htmlmin');
 	grunt.loadNpmTasks('grunt-contrib-copy');
 	grunt.loadNpmTasks('grunt-contrib-watch');
+	grunt.loadNpmTasks('grunt-typescript');
 
 	//Tasks.
-	grunt.registerTask('default', ['jshint', 'qunit', 'uglify', 'htmlmin', 'copy']);
+	grunt.registerTask('default', ['typescript','qunit', 'uglify', 'htmlmin', 'copy']);
 //	grunt.registerTask('travis', ['jshint', 'qunit']);
 };
