@@ -3,6 +3,9 @@ TypeScript Demo
 Using Grunt to compile TypeScript to ECMA5.  Proof of Concept by Nick Kaye
 
 ## Documentation
+
+From the command line, navigate to the project folder.
+
 Use the Node package manager to automatically install all of the dependecies listed in the `package.json` file:
 
     npm install
